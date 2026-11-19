@@ -1,0 +1,108 @@
+/* Contenedor responsivo: ocupa el 100% del alto disponible. */
+.fire-map {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+}
+
+.fire-map__canvas {
+  width: 100%;
+  height: 100%;
+  background: #0f172a;
+}
+
+/* Asegura que Leaflet respete las dimensiones del contenedor. */
+.fire-map .leaflet-container {
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+}
+
+/* ---------- Popup de "Zona de Incendio Activa" ---------- */
+.fire-popup {
+  min-width: 220px;
+  color: #1a1d23;
+}
+
+.fire-popup__badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.fire-popup__title {
+  margin: 8px 0 10px;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.fire-popup__list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.fire-popup__list dt {
+  color: #5a6270;
+}
+
+.fire-popup__list dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
+.fire-popup__container .leaflet-popup-content-wrapper {
+  border-radius: 10px;
+}
+
+/* ---------- Panel flotante de leyenda ---------- */
+.fire-map__legend {
+  position: absolute;
+  left: 12px;
+  bottom: 90px;
+  z-index: 500;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #e3e6ea;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.fire-map__legend h4 {
+  margin: 0 0 6px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #5a6270;
+}
+
+.fire-map__legend ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.fire-map__legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fire-map__legend .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}

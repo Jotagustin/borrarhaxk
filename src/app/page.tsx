@@ -2,6 +2,11 @@ import Link from "next/link";
 
 const sections = [
   {
+    href: "/mapa",
+    title: "Mapa de Incendios",
+    description: "Mapa interactivo con imágenes satelitales y zonas de incendio activas.",
+  },
+  {
     href: "/dashboard",
     title: "Dashboard",
     description: "Resumen general de tus finanzas y actividad reciente.",
