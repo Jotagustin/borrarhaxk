@@ -1,0 +1,43 @@
+/* La página ocupa toda la altura de la pantalla para que el mapa sea responsivo. */
+.mapa-page {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  min-height: 100vh;
+}
+
+.mapa-page__header {
+  flex: 0 0 auto;
+  padding: 0.9rem 1.5rem;
+  background: #fff;
+  border-bottom: 1px solid #e3e6ea;
+}
+
+.mapa-page__header h1 {
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+}
+
+.mapa-page__header p {
+  margin-top: 0.25rem;
+  color: #5a6270;
+  font-size: 0.9rem;
+}
+
+/* El contenedor del mapa toma todo el alto restante. */
+.mapa-page__map {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+}
+
+.mapa-page__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #5a6270;
+  font-size: 0.95rem;
+  background: #eef1f4;
+}

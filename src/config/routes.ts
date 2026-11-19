@@ -1,5 +1,6 @@
 export const ROUTES = {
   home: "/",
+  mapa: "/mapa",
   auth: {
     login: "/login",
     register: "/register",
