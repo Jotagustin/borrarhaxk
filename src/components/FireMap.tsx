@@ -189,8 +189,8 @@ export default function FireMap({
   }, [activeIncidente]);
 
   return (
-    <div className="relative w-full h-[520px] rounded-xl overflow-hidden border border-slate-200 shadow-sm">
-      <div ref={mapContainerRef} className="w-full h-full" style={{ height: "100%", minHeight: "480px" }} />
+    <div className="map-stage">
+      <div ref={mapContainerRef} className="map-stage__canvas" />
       <div className="map-legend">
         <div className="legend-item">
           <span className="dot dot-real"></span>
