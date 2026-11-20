@@ -132,4 +132,231 @@
   height: 12px;
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  line-height: 1;
+}
+
+.fire-map__legend-note {
+  margin: 8px 0 0;
+  font-size: 0.7rem;
+  color: #8a919c;
+  font-style: italic;
+}
+
+/* =========================================================================
+ * HUD de clima (Función táctica 1)
+ * ========================================================================= */
+.weather-hud {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 500;
+  width: 230px;
+  background: rgba(15, 23, 42, 0.86);
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.8rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+}
+
+.weather-hud--extreme {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.6), 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.weather-hud__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.weather-hud__title {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.68rem;
+  color: #93c5fd;
+}
+
+.weather-hud__place {
+  font-size: 0.7rem;
+  color: #cbd5e1;
+  text-align: right;
+}
+
+.weather-hud__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.weather-hud__metric {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+
+.weather-hud__value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.weather-hud__label {
+  font-size: 0.64rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.weather-hud__loading,
+.weather-hud__error {
+  margin: 4px 0 0;
+  font-size: 0.75rem;
+  color: #cbd5e1;
+}
+
+.weather-hud__error {
+  color: #fca5a5;
+}
+
+.weather-hud__alert {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #dc2626;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.72rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  animation: fire-blink 1s steps(2, start) infinite;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.weather-hud__alert-rule {
+  font-weight: 600;
+  font-size: 0.62rem;
+  opacity: 0.9;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+@keyframes fire-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.weather-hud__source {
+  margin: 8px 0 0;
+  font-size: 0.62rem;
+  color: #64748b;
+  text-align: right;
+}
+
+/* =========================================================================
+ * Flecha de viento (Función táctica 1)
+ * ========================================================================= */
+.wind-arrow-head {
+  background: transparent;
+  border: 0;
+}
+
+.wind-arrow-head__inner {
+  color: #facc15;
+  font-size: 22px;
+  line-height: 1;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.9);
+  transition: transform 0.6s ease;
+  transform-origin: center;
+}
+
+/* =========================================================================
+ * Marcadores tácticos (Funciones tácticas 2 y 3)
+ * ========================================================================= */
+.origin-marker {
+  background: transparent;
+  border: 0;
+}
+
+.origin-marker__inner {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));
+}
+
+.water-marker {
+  background: transparent;
+  border: 0;
+}
+
+.water-marker__inner {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(37, 99, 235, 0.9);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-size: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================================================
+ * Popups tácticos
+ * ========================================================================= */
+.tactic-popup {
+  min-width: 180px;
+  color: #1a1d23;
+  font-size: 0.85rem;
+}
+
+.tactic-popup h4 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+}
+
+.tactic-popup p {
+  margin: 2px 0;
+}
+
+.tactic-popup__hint {
+  color: #8a919c;
+  font-size: 0.72rem;
+  font-style: italic;
+}
+
+.fire-popup__calc {
+  color: #2563eb;
+  font-size: 0.68rem;
+}
+
+/* =========================================================================
+ * Geoman (Función táctica 4) — ajustes visuales sobre el mapa oscuro
+ * ========================================================================= */
+.leaflet-pm-toolbar .leaflet-buttons-control-button {
+  background-color: #fff;
 }
