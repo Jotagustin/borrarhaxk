@@ -307,16 +307,6 @@ body {
   color: #1a1d23;
 }
 
-.sidebar-toggle-icon::before {
-  content: "â€¹";
-  font-size: 1rem;
-  line-height: 1;
-}
-
-.shell.is-collapsed .sidebar-toggle-icon::before {
-  content: "â€º";
-}
-
 .sidebar-toggle-icon {
   display: inline-flex;
   align-items: center;
@@ -328,7 +318,6 @@ body {
   height: 16px;
   transition: transform 0.2s ease;
 }
-
 .shell.is-collapsed .sidebar-toggle-icon svg {
   transform: rotate(180deg);
 }
@@ -369,11 +358,13 @@ body {
   flex: 0 0 auto;
   border-radius: 8px;
   background: #f1f2f4;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  color: #5a6270;
 }
 
+.sidebar-icon svg {
+  width: 18px;
+  height: 18px;
+}
 .sidebar-link.is-active .sidebar-icon {
   background: #1a1d23;
   color: #fff;
