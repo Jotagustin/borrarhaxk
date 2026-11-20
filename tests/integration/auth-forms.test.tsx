@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+﻿import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
@@ -19,7 +19,7 @@ vi.mock("next/navigation", () => ({
 
 /**
  * Mock the auth hook by its internal module path. Everything else in
- * `@/modules/auth` (the real LoginForm/RegisterForm) stays real.
+ * `@modules/auth` (the real LoginForm/RegisterForm) stays real.
  */
 vi.mock("@/modules/auth/hooks/useAuth", () => ({
   useAuth: vi.fn(),
@@ -78,13 +78,13 @@ describe("LoginForm (integration, useAuth mocked)", () => {
     render(<LoginForm />);
 
     await user.type(screen.getByLabelText(/correo electrónico/i), "ana@example.com");
-    await user.type(screen.getByLabelText(/contraseña/i), "secret123");
+    await user.type(screen.getByLabelText(/contraseña/i), "Secret123!");
     await user.click(screen.getByRole("button", { name: /ingresar/i }));
 
     await waitFor(() =>
       expect(auth.login).toHaveBeenCalledWith({
         email: "ana@example.com",
-        password: "secret123",
+        password: "Secret123!",
       }),
     );
   });
@@ -95,9 +95,11 @@ describe("LoginForm (integration, useAuth mocked)", () => {
     useAuthMock.mockReturnValue(auth);
     render(<LoginForm />);
 
+    await user.type(screen.getByLabelText(/correo electrónico/i), "ana@example.com");
+    await user.type(screen.getByLabelText(/contraseña/i), "Secret123!");
     await user.click(screen.getByRole("button", { name: /ingresar/i }));
 
-    expect(auth.clearError).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(auth.clearError).toHaveBeenCalledTimes(1));
   });
 
   it("navigates to the dashboard after a successful login", async () => {
@@ -107,7 +109,7 @@ describe("LoginForm (integration, useAuth mocked)", () => {
     render(<LoginForm />);
 
     await user.type(screen.getByLabelText(/correo electrónico/i), "ana@example.com");
-    await user.type(screen.getByLabelText(/contraseña/i), "secret123");
+    await user.type(screen.getByLabelText(/contraseña/i), "Secret123!");
     await user.click(screen.getByRole("button", { name: /ingresar/i }));
 
     await waitFor(() =>
@@ -179,14 +181,14 @@ describe("RegisterForm (integration, useAuth mocked)", () => {
 
     await user.type(screen.getByLabelText(/nombre/i), "Ana");
     await user.type(screen.getByLabelText(/correo electrónico/i), "ana@example.com");
-    await user.type(screen.getByLabelText(/contraseña/i), "secret123");
+    await user.type(screen.getByLabelText(/contraseña/i), "Secret123!");
     await user.click(screen.getByRole("button", { name: /crear cuenta/i }));
 
     await waitFor(() =>
       expect(auth.register).toHaveBeenCalledWith({
         name: "Ana",
         email: "ana@example.com",
-        password: "secret123",
+        password: "Secret123!",
       }),
     );
   });
@@ -197,9 +199,12 @@ describe("RegisterForm (integration, useAuth mocked)", () => {
     useAuthMock.mockReturnValue(auth);
     render(<RegisterForm />);
 
+    await user.type(screen.getByLabelText(/nombre/i), "Ana");
+    await user.type(screen.getByLabelText(/correo electrónico/i), "ana@example.com");
+    await user.type(screen.getByLabelText(/contraseña/i), "Secret123!");
     await user.click(screen.getByRole("button", { name: /crear cuenta/i }));
 
-    expect(auth.clearError).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(auth.clearError).toHaveBeenCalledTimes(1));
   });
 
   it("navigates to the dashboard after a successful registration", async () => {
@@ -210,7 +215,7 @@ describe("RegisterForm (integration, useAuth mocked)", () => {
 
     await user.type(screen.getByLabelText(/nombre/i), "Ana");
     await user.type(screen.getByLabelText(/correo electrónico/i), "ana@example.com");
-    await user.type(screen.getByLabelText(/contraseña/i), "secret123");
+    await user.type(screen.getByLabelText(/contraseña/i), "Secret123!");
     await user.click(screen.getByRole("button", { name: /crear cuenta/i }));
 
     await waitFor(() =>

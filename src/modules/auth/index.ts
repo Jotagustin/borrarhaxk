@@ -50,6 +50,7 @@ export {
 
 export { useAuth } from "./hooks/useAuth";
 export type { UseAuthResult } from "./hooks/useAuth";
+export { useAriaInvalidSync } from "./hooks/useAriaInvalidSync";
 
 /* Stream 3: UI de autenticación. */
 

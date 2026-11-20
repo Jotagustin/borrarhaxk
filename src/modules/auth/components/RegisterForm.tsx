@@ -1,11 +1,14 @@
 "use client";
 
-import { useState, type CSSProperties, type ChangeEvent, type FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { useAuth } from "@/modules/auth";
 import { ROUTES } from "@/config/routes";
+
+const PASSWORD_RULES =
+  "Ingresa una contraseña de al menos 8 caracteres, con mayúscula, minúscula, número y carácter especial.";
 
 export function RegisterForm() {
   const router = useRouter();
@@ -28,114 +31,80 @@ export function RegisterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={formStyle} noValidate>
-      <h1 style={titleStyle}>Crear cuenta</h1>
-      <p style={subtitleStyle}>Regístrate para reportar y analizar incendios.</p>
+    <form onSubmit={handleSubmit} className="auth-form">
+      <h1>Crear cuenta</h1>
+      <p className="auth-subtitle">Regístrate para reportar y analizar incendios.</p>
 
       {error && (
-        <p role="alert" style={errorStyle}>
+        <p role="alert" className="auth-error">
           {error.message}
         </p>
       )}
 
-      <label style={labelStyle}>
-        Nombre
+      <div className="field">
+        <label htmlFor="register-name">Nombre</label>
         <input
           type="text"
+          id="register-name"
           name="name"
           autoComplete="name"
           required
+          data-error="register-name-error"
           value={name}
           onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-          style={inputStyle}
         />
-      </label>
+        <div id="register-name-error" className="error-msg">
+          <span role="img" aria-label="Error">❌</span> Ingresa tu nombre.
+        </div>
+      </div>
 
-      <label style={labelStyle}>
-        Correo electrónico
+      <div className="field">
+        <label htmlFor="register-email">Correo electrónico</label>
         <input
           type="email"
+          id="register-email"
           name="email"
-          autoComplete="email"
+          autoComplete="username"
+          spellCheck="false"
           required
+          data-error="register-email-error"
           value={email}
           onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-          style={inputStyle}
         />
-      </label>
+        <div id="register-email-error" className="error-msg">
+          <span role="img" aria-label="Error">❌</span> Ingresa un correo en el formato tu@ejemplo.com.
+        </div>
+      </div>
 
-      <label style={labelStyle}>
-        Contraseña
+      <div className="field">
+        <label htmlFor="register-password">Contraseña</label>
         <input
           type="password"
+          id="register-password"
           name="password"
           autoComplete="new-password"
           required
+          minLength={8}
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}"
+          aria-describedby="register-password-rules"
+          data-error="register-password-error"
           value={password}
           onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-          style={inputStyle}
         />
-      </label>
+        <div id="register-password-error" className="error-msg">
+          <span role="img" aria-label="Error">❌</span> {PASSWORD_RULES}
+        </div>
+      </div>
 
-      <button type="submit" className="btn" disabled={loading} style={submitStyle}>
+      <button type="submit" className="btn" disabled={loading}>
         {loading ? "Creando cuenta…" : "Crear cuenta"}
       </button>
 
-      <p style={subtitleStyle}>
+      <p className="auth-subtitle">
         ¿Ya tienes cuenta? <Link href={ROUTES.auth.login}>Iniciar sesión</Link>
       </p>
     </form>
   );
 }
-
-const formStyle: CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
-  gap: "0.85rem",
-  background: "#fff",
-  border: "1px solid #e3e6ea",
-  borderRadius: 10,
-  padding: "2rem",
-  width: "100%",
-  maxWidth: 380,
-};
-
-const titleStyle: CSSProperties = {
-  fontSize: "1.35rem",
-  letterSpacing: "-0.02em",
-};
-
-const subtitleStyle: CSSProperties = {
-  color: "#6b7280",
-  fontSize: "0.875rem",
-};
-
-const labelStyle: CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
-  gap: "0.3rem",
-  fontSize: "0.85rem",
-  color: "#374151",
-};
-
-const inputStyle: CSSProperties = {
-  border: "1px solid #d3d8df",
-  borderRadius: 8,
-  padding: "0.5rem 0.65rem",
-  fontSize: "0.9rem",
-};
-
-const errorStyle: CSSProperties = {
-  color: "#a3241a",
-  background: "#fdecea",
-  border: "1px solid #f6c9c4",
-  borderRadius: 8,
-  padding: "0.5rem 0.65rem",
-  fontSize: "0.85rem",
-};
-
-const submitStyle: CSSProperties = {
-  marginTop: "0.25rem",
-};
 
 export default RegisterForm;

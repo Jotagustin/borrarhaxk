@@ -169,11 +169,6 @@ export default function DashboardPage() {
             detección con DeepSeek IA.
           </p>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <span className="badge-status-online">
-            Backend FastAPI activo en :8000
-          </span>
-        </div>
       </header>
 
       {/* Grid principal */}
