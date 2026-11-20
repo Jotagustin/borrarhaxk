@@ -792,6 +792,15 @@ body {
   transform: scale(0.99);
 }
 
+/* Video del análisis forense en la tarjeta de veredicto */
+.veredicto-video {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #0f172a;
+  display: block;
+}
+
 /* Mapa y Leyenda */
 .map-stage {
   position: relative;

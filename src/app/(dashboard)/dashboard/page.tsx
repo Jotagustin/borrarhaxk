@@ -398,6 +398,18 @@ export default function DashboardPage() {
                 </div>
               </div>
 
+              {/* Video del análisis (Gemini) */}
+              <video
+                className="veredicto-video"
+                src="/analysis-result.mp4"
+                controls
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-label="Reproducción del análisis del incidente"
+              />
+
               {/* Metadatos de Origen */}
               <div className="origen-meta-grid">
                 <div className="meta-field">
