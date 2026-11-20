@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Map as LeafletMap } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./fire-map.css";
@@ -31,6 +31,7 @@ export default function FireMap({ center, zoom, onZoneSelect }: FireMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<LeafletMap | null>(null);
   const onSelectRef = useRef(onZoneSelect);
+  const [wheelZoomActive, setWheelZoomActive] = useState(false);
 
   // Mantiene el callback actualizado sin recrear el mapa.
   useEffect(() => {
@@ -51,10 +52,21 @@ export default function FireMap({ center, zoom, onZoneSelect }: FireMapProps) {
         center: initialCenter,
         zoom: initialZoom,
         zoomControl: true,
-        scrollWheelZoom: true,
+        scrollWheelZoom: false,
         worldCopyJump: true,
       });
       mapRef.current = map;
+
+      // Scroll lock: la rueda hace zoom solo tras hacer clic en el mapa.
+      // Fuera de él, el scroll de la página no queda capturado.
+      map.on("click", () => {
+        map.scrollWheelZoom.enable();
+        setWheelZoomActive(true);
+      });
+      map.on("mouseout", () => {
+        map.scrollWheelZoom.disable();
+        setWheelZoomActive(false);
+      });
 
       // ---- Capas base -----------------------------------------------------
       const baseLayers: Record<string, L.TileLayer> = {};
@@ -111,6 +123,13 @@ export default function FireMap({ center, zoom, onZoneSelect }: FireMapProps) {
   return (
     <div className="fire-map" role="application" aria-label="Mapa interactivo de incendios">
       <div ref={containerRef} className="fire-map__canvas" />
+
+      <div
+        className={`fire-map__scroll-hint${wheelZoomActive ? "" : " fire-map__scroll-hint--visible"}`}
+        aria-hidden="true"
+      >
+        <span>Clic en el mapa para activar el zoom con la rueda</span>
+      </div>
 
       <div className="fire-map__legend">
         <h4>Leyenda</h4>
