@@ -165,6 +165,7 @@ body {
 
 .shell.is-collapsed .sidebar {
   width: 76px;
+  padding: 1.25rem 0.65rem;
 }
 
 .sidebar-head {
@@ -172,6 +173,11 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+}
+
+.shell.is-collapsed .sidebar-head {
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .brand {
@@ -226,6 +232,22 @@ body {
 
 .shell.is-collapsed .sidebar-toggle-icon::before {
   content: "â€º";
+}
+
+.sidebar-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-toggle-icon svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.shell.is-collapsed .sidebar-toggle-icon svg {
+  transform: rotate(180deg);
 }
 
 .sidebar-nav {
@@ -399,6 +421,15 @@ body {
   border-left-width: 3px;
   border-radius: 10px;
   padding: 1rem 1.15rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stat:hover {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  border-color: #b9c0cb;
+  border-left-width: 3px;
 }
 
 .stat-value {
@@ -955,4 +986,164 @@ body {
 .events h2 {
   font-size: 1rem;
   margin-bottom: 0.75rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #3a414d;
+  text-decoration: none;
+  margin-bottom: 0.9rem;
+  padding: 0.35rem 0.75rem 0.35rem 0.55rem;
+  border: 1px solid #d3d8df;
+  border-radius: 999px;
+  background: #fff;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.back-link:hover {
+  color: #1a1d23;
+  border-color: #9aa1ab;
+  background: #f5f6f8;
+}
+
+.back-link__icon {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.15s ease;
+}
+
+.back-link:hover .back-link__icon {
+  transform: translateX(-2px);
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.media-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #e3e6ea;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.media-card:hover {
+  border-color: #b9c0cb;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.media-thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0.55rem 0.65rem;
+}
+
+.tone-ember {
+  background:
+    radial-gradient(90% 120% at 70% 90%, rgba(209, 59, 46, 0.55) 0%, rgba(209, 59, 46, 0) 55%),
+    linear-gradient(160deg, #2b2f36 0%, #1a1d23 60%, #101216 100%);
+}
+
+.tone-haze {
+  background:
+    radial-gradient(90% 120% at 30% 20%, rgba(217, 154, 31, 0.42) 0%, rgba(217, 154, 31, 0) 55%),
+    linear-gradient(160deg, #2f333a 0%, #1c2026 60%, #12151a 100%);
+}
+
+.tone-mute {
+  background:
+    radial-gradient(90% 120% at 60% 30%, rgba(154, 161, 171, 0.28) 0%, rgba(154, 161, 171, 0) 55%),
+    linear-gradient(160deg, #2a2d33 0%, #1b1e23 60%, #121417 100%);
+}
+
+.media-kind {
+  color: #e8ecf1;
+  letter-spacing: 0.08em;
+  font-size: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+}
+
+.media-duration {
+  color: #cdd4dc;
+  font-size: 0.7rem;
+}
+
+.media-play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.media-play span {
+  width: 0;
+  height: 0;
+  margin-left: 3px;
+  border-left: 12px solid rgba(255, 255, 255, 0.85);
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+}
+
+.media-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.85rem 1rem 1rem;
+}
+
+.media-body .report-meta {
+  margin-top: 0.15rem;
+}
+
+.map-panel {
+  margin-bottom: 2rem;
+  background: #fff;
+  border: 1px solid #e3e6ea;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.map-panel-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid #eef0f3;
+}
+
+.map-panel-head h2 {
+  font-size: 1rem;
+}
+
+.map-panel-canvas {
+  height: 460px;
+}
+
+.map-loading {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  min-height: 460px;
+  color: #6b7280;
+  font-size: 0.9rem;
+  background: #0f172a;
 }
