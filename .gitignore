@@ -34,3 +34,13 @@ coverage/
 Thumbs.db
 .vscode/
 .idea/
+
+# Python & Backend
+__pycache__/
+*.py[cod]
+*$py.class
+*.db
+backend/incidentes.db
+backend/.env
+.venv/
+venv/

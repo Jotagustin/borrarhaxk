@@ -8,8 +8,8 @@ const sections = [
   },
   {
     href: "/dashboard",
-    title: "Dashboard",
-    description: "Resumen general de tus finanzas y actividad reciente.",
+    title: "Dashboard de Incendios",
+    description: "Monitoreo satelital, mapa interactivo y clasificación forense con IA.",
   },
   {
     href: "/transactions",
