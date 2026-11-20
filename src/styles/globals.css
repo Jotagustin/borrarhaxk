@@ -1248,3 +1248,127 @@ body {
   font-size: 0.9rem;
   background: #0f172a;
 }
+
+/* -------------------------------------------------------------
+ * Panel de decisiones (Gestor de Operaciones)
+ * ----------------------------------------------------------- */
+.badge-status-online,
+.badge-status-offline {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-status-online {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.badge-status-offline {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.stat-alert {
+  border-left: 3px solid #f97316;
+}
+.decision-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .decision-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.decision-map {
+  min-height: 520px;
+}
+
+.decision-queue h2 {
+  font-size: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.decision-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.decision-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.decision-item:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.decision-item.is-real {
+  border-left-color: #dc2626;
+}
+
+.decision-item.is-falsa {
+  border-left-color: #10b981;
+}
+
+.decision-item.is-active {
+  background: #f1f5f9;
+  box-shadow: 0 0 0 1px #94a3b8 inset;
+}
+
+.decision-item__rank {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #94a3b8;
+  min-width: 1.2rem;
+}
+
+.decision-item__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.decision-item__top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.decision-item__type {
+  text-transform: capitalize;
+  color: #334155;
+}
+
+.decision-item__meta {
+  font-size: 0.75rem;
+  margin-top: 2px;
+}

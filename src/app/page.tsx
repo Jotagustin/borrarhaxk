@@ -2,25 +2,20 @@
 
 import { useRouter } from "next/navigation";
 
+import { ROUTES } from "@/config/routes";
+import { setDemoRole } from "@/lib/role";
+
 export default function HomePage() {
   const router = useRouter();
 
   const handleAccesoReporte = () => {
-    try {
-      sessionStorage.setItem("firewatch_demo_role", "reporte");
-    } catch {
-      // Ignorar si sessionStorage no está disponible
-    }
-    router.push("/dashboard");
+    setDemoRole("reporte");
+    router.push(ROUTES.dashboard.root);
   };
 
   const handleAccesoGestor = () => {
-    try {
-      sessionStorage.setItem("firewatch_demo_role", "gestor");
-    } catch {
-      // Ignorar si sessionStorage no está disponible
-    }
-    router.push("/analysis");
+    setDemoRole("gestor");
+    router.push(ROUTES.dashboard.decisions);
   };
 
   return (
@@ -159,8 +154,8 @@ export default function HomePage() {
                 Gestor de Operaciones
               </h2>
               <p style={{ fontSize: "0.875rem", color: "#475569", lineHeight: 1.5 }}>
-                Accede al panel de gestión y análisis en vivo fotograma a
-                fotograma con historial de eventos.
+                Panel de decisiones con incidentes priorizados para despacho
+                rápido y mapa de focos activos.
               </p>
               <div
                 style={{
@@ -177,7 +172,7 @@ export default function HomePage() {
                   <strong>Usuario:</strong> gestor@firewatch.cl
                 </div>
                 <div>
-                  <strong>Destino:</strong> /analysis
+                  <strong>Destino:</strong> /decisions
                 </div>
               </div>
             </div>

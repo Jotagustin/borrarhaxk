@@ -3,37 +3,74 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
+import {
+  ChevronLeft,
+  Flame,
+  Activity,
+  Settings,
+  Gauge,
+  type LucideIcon,
+} from "lucide-react";
 
-const nav = [
+import { ROUTES } from "@/config/routes";
+import { useDemoRole } from "@/hooks/useDemoRole";
+import type { DemoRole } from "@/lib/role";
+
+interface NavItem {
+  href: string;
+  label: string;
+  hint: string;
+  Icon: LucideIcon;
+}
+
+const reporteNav: NavItem[] = [
   {
-    href: "/dashboard",
-    label: "Reportes",
-    hint: "Reportes de incendio clasificados",
-    icon: "RE",
+    href: ROUTES.dashboard.root,
+    label: "Reportar incendio",
+    hint: "Sube foto y GPS, la IA clasifica",
+    Icon: Flame,
   },
   {
-    href: "/analysis",
+    href: ROUTES.dashboard.analysis,
     label: "Análisis en vivo",
     hint: "Detección en tiempo real",
-    icon: "AN",
+    Icon: Activity,
   },
   {
-    href: "/settings",
+    href: ROUTES.dashboard.settings,
     label: "Ajustes",
     hint: "Perfil y preferencias",
-    icon: "AJ",
+    Icon: Settings,
   },
 ];
 
+const gestorNav: NavItem[] = [
+  {
+    href: ROUTES.dashboard.decisions,
+    label: "Panel de decisiones",
+    hint: "Incidentes priorizados para despacho",
+    Icon: Gauge,
+  },
+];
+
+const NAV_BY_ROLE: Record<DemoRole, NavItem[]> = {
+  reporte: reporteNav,
+  gestor: gestorNav,
+};
+
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const role = useDemoRole();
   const [collapsed, setCollapsed] = useState(false);
+
+  // Sin rol resuelto todavía: menú completo como fallback neutral.
+  const nav = role ? NAV_BY_ROLE[role] : reporteNav;
 
   return (
     <div className={`shell ${collapsed ? "is-collapsed" : ""}`}>
       <aside className="sidebar">
         <div className="sidebar-head">
-          <Link href="/" className="brand" aria-label="Firewatch">
+          <Link href={ROUTES.home} className="brand" aria-label="Firewatch">
             <span className="brand-mark">FW</span>
             <span className="sidebar-label">Firewatch</span>
           </Link>
@@ -45,16 +82,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             onClick={() => setCollapsed((value) => !value)}
           >
             <span className="sidebar-toggle-icon" aria-hidden>
-              <svg viewBox="0 0 16 16">
-                <path
-                  d="M10 3 5 8l5 5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <ChevronLeft />
             </span>
           </button>
         </div>
@@ -71,7 +99,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 title={item.label}
               >
                 <span className="sidebar-icon" aria-hidden>
-                  {item.icon}
+                  <item.Icon />
                 </span>
                 <span className="sidebar-text">
                   <span className="sidebar-link-label">{item.label}</span>
@@ -93,3 +121,6 @@ export function AppShell({ children }: { children: ReactNode }) {
     </div>
   );
 }
+
+export default AppShell;
+
