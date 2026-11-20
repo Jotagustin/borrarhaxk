@@ -12,12 +12,15 @@ import type {
   RegisterPayload,
 } from "./dto";
 
-/** Rutas del contrato de auth. */
+/**
+ * Rutas del contrato de auth, relativas a la base de la API
+ * (`env.apiUrl`, p. ej. `http://localhost:4000/api`).
+ */
 export const AUTH_ENDPOINTS = {
-  login: "/api/auth/login",
-  register: "/api/auth/register",
-  logout: "/api/auth/logout",
-  session: "/api/auth/session",
+  login: "/auth/login",
+  register: "/auth/register",
+  logout: "/auth/logout",
+  session: "/auth/session",
 } as const;
 
 /** Unión de todas las rutas válidas del contrato. */
