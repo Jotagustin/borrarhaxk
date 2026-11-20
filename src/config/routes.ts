@@ -7,5 +7,7 @@ export const ROUTES = {
   },
   dashboard: {
     root: "/dashboard",
+    analysis: "/analysis",
+    settings: "/settings",
   },
 } as const;
