@@ -132,6 +132,10 @@ body {
 
 @media (max-width: 960px) {
   .monitor-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 .mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.8rem;
@@ -872,6 +876,8 @@ body {
 
 .history-table tr:hover td {
   background: #f8fafc;
+}
+
 .stage {
   position: relative;
   aspect-ratio: 16 / 9;
